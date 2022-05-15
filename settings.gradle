@@ -1,0 +1,3 @@
+include ':mChat'
+include ':app'
+rootProject.name = "mChatSample"
