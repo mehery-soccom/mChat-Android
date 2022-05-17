@@ -23,7 +23,24 @@ Once thats done please copy the content of script, you will require it.
 
 ![image description](https://raw.githubusercontent.com/mehery-soccom/mChat-Android/master/images/Readme3.PNG)
 
-## Installation
+##Installing
+
+```gradle
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+```gradle
+dependencies {
+	  implementation 'com.github.mehery-soccom:mChat-Android:v1.0.1'
+}
+```
+
+## Usage
 
 To invoke the chat . Please follow the following code.
 
