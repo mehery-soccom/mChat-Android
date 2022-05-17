@@ -23,7 +23,10 @@ Once thats done please copy the content of script, you will require it.
 
 ![image description](https://raw.githubusercontent.com/mehery-soccom/mChat-Android/master/images/Readme3.PNG)
 
-##Installing
+
+## Installing
+
+You can install the sdk by adding following dependancy
 
 ```gradle
 allprojects {
