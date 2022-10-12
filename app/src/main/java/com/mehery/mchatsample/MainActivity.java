@@ -1,8 +1,12 @@
 package com.mehery.mchatsample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -31,19 +35,33 @@ public class MainActivity extends AppCompatActivity {
     int receivedMessageTextColor;
     int userInputBackgroundColor;
     int userInputTextColor;
+    private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
+    private final int MY_PERMISSIONS_READ_EXTERNAL_STORAGE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_READ_EXTERNAL_STORAGE);
+        }
+
+
+
+
         TextInputEditText domainEditText = (TextInputEditText) findViewById(R.id.domainET);
-        domainEditText.setText("pranjal.mehery.io");
+        domainEditText.setText("almullaexchange.mehery.com");
 
         TextInputEditText channelKeyEditText = (TextInputEditText) findViewById(R.id.channelKeyET);
-        channelKeyEditText.setText("1gnk3z3llr9dcBI0PWZRCLE");
+        channelKeyEditText.setText("1gzrmyly9nsafL8SA7KA0VI");
 
         TextInputEditText channelIdEditText = (TextInputEditText) findViewById(R.id.channelIdET);
-        channelIdEditText.setText("web:pranjal.mehery.io");
+        channelIdEditText.setText("web:onlineapp");
 
         TextInputEditText headerTitleET = (TextInputEditText) findViewById(R.id.headerTitleET);
 
