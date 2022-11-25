@@ -12,7 +12,10 @@
 
     <application
         android:hardwareAccelerated="true">
-        <activity android:name=".MChatWebActivity"></activity>
+        <activity android:name=".MChatWebActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+
+        </activity>
         <receiver android:name=".OnComplete" />
     </application>
 

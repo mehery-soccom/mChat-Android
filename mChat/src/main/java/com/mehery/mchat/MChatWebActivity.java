@@ -307,13 +307,15 @@ import java.util.HashMap;
     protected void onResume() {
         super.onResume();
         registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-        getSupportActionBar().hide();
+//        getActionBar().hide();
+//        getSupportActionBar().hide();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        getSupportActionBar().show();
+//        getActionBar().show();
+//        getSupportActionBar().show();
     }
 
     void evaluateScript(WebView webView, String script){
