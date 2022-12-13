@@ -1,6 +1,8 @@
  package com.mehery.mchat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -9,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -69,11 +72,20 @@ import java.util.HashMap;
      public static final int REQUEST_SELECT_FILE = 100;
      private final static int FILECHOOSER_RESULTCODE = 1;
      OnComplete onComplete ;
+     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
+     private final int MY_PERMISSIONS_READ_EXTERNAL_STORAGE = 2;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_m_chat_web);
+         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
+         }
+
+         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_READ_EXTERNAL_STORAGE);
+         }
          onComplete = new OnComplete();
         lazyLoader = (LazyLoader) findViewById(R.id.loaderView);
         lazyLoader.setVisibility(View.VISIBLE);
@@ -251,6 +263,7 @@ import java.util.HashMap;
          mywebview.getSettings().setMediaPlaybackRequiresUserGesture(false);
          mywebview.getSettings().setMixedContentMode( WebSettings.MIXED_CONTENT_ALWAYS_ALLOW );
         mywebview.loadUrl("https://"+domain+"/postman/ext/plugin/customer/app/chat/");
+
         setPostMessgeListener(mywebview);
     }
 
